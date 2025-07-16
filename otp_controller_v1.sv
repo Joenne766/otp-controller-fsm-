@@ -63,6 +63,7 @@ module FSM (
     
     
     
+
     always@(posedge clk) begin
         if(reset) begin
             state <= IDLE;
