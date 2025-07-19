@@ -1,4 +1,4 @@
-module fsm #(
+module FSM #(
     parameter A = 2,
     parameter B = 2
 )(
