@@ -64,9 +64,9 @@ module FSM #(
         S_POWER_DOWN_1 = 14,
         S_POWER_DOWN_2 = 15,
         S_WRITING_WAITING_FOR_SIGNAL = 16,
-        S_PREPARE_READING_1 = 17,
-        S_PREPARE_READING_2 = 18,
-        S_PREPARE_READING_3 = 19,
+        S_PREPARE_READING = 17,
+        //S_PREPARE_READING_2 = 18,
+        //S_PREPARE_READING_3 = 19,
         S_GO_NEXT_CELL = 20,
         S_READING = 21,
         S_DESELECT_CELL_READING = 22,
@@ -178,6 +178,8 @@ module FSM #(
                     $display("state = S_PREPARE_WRITING_1");
                     //set all WLN to 5 V
                     WLN_reg <= {A{WLN_V_MID}};
+                    //set PRG to writing
+                    PRG_reg <= PRG_WRITING;
                     //next state
                     state <= S_PREPARE_WRITING_2;
                 end
@@ -218,8 +220,6 @@ module FSM #(
                 S_FIND_NEXT_BIT: begin
                     $display("state = S_FIND_NEXT_BIT");
                     if(counter >= A) begin
-                        //reset write_row
-                        write_row <= 0;
                         //next state
                         //writing finished
                         state <= S_POWER_DOWN_1;
@@ -302,8 +302,24 @@ module FSM #(
                     PL_reg <= {B{PL_V_GND}};
                     BL_reg <= {B{BL_V_GND}};
                     //next state
-                    state <= S_PREPARE_READING_1;
+                    state <= S_PREPARE_READING;
                 end
+
+                S_PREPARE_READING: begin
+                    $display("state = S_PREPARE_READING_1");
+                    //reset counter
+                    counter <= 0;
+                    //set selected BL to 5 V
+                    BL_reg[column] <= BL_V_MID;
+                    //set PRG to 0 V
+                    PRG_reg <= PRG_READING;
+                    //set selected PL to 1.8 V
+                    PL_reg[column] <= PL_V_READ;
+                    //next state
+                    state <= S_GO_NEXT_CELL;
+                end
+
+
 
 
 
