@@ -49,7 +49,10 @@ initial begin
     $dumpfile("wave.vcd");
     $dumpvars(0, testbench);
 
-    #200 $finish;
+    reset = 1;
+    #5 reset = 0;
+
+    #2000 $finish;
 end
 
 
