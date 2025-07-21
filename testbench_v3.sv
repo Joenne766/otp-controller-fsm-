@@ -21,6 +21,7 @@ wire [A-1:0] WLP;
 wire PRG;
 wire [A-1:0] data_out;
 wire read_active;
+wire output_read_circuit;
 
 
 
@@ -37,6 +38,7 @@ FSM #(
     .column(column),
     .data_in(data_in),
     .writing_successful(writing_successful),
+    .output_read_circuit(output_read_circuit),
     .PL(PL),
     .BL(BL),
     .WLN(WLN),

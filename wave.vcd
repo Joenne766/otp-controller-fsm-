@@ -1,5 +1,5 @@
 $date
-	Sun Jul 20 13:55:47 2025
+	Mon Jul 21 08:33:15 2025
 $end
 $version
 	Icarus Verilog
@@ -65,67 +65,63 @@ $var parameter 6 P S_IDLE $end
 $var parameter 6 Q S_NO_FALSE_BITS_Q $end
 $var parameter 6 R S_POWER_DOWN_1 $end
 $var parameter 6 S S_POWER_DOWN_2 $end
-$var parameter 6 T S_PREPARE_READING_1 $end
-$var parameter 6 U S_PREPARE_READING_2 $end
-$var parameter 6 V S_PREPARE_READING_3 $end
-$var parameter 6 W S_PREPARE_WRITING_1 $end
-$var parameter 6 X S_PREPARE_WRITING_2 $end
-$var parameter 6 Y S_PREPARE_WRITING_3 $end
-$var parameter 6 Z S_PREPARE_WRITING_4 $end
-$var parameter 6 [ S_PREPARE_WRITING_5 $end
-$var parameter 6 \ S_READING $end
-$var parameter 6 ] S_READING_POSSIBLE $end
-$var parameter 6 ^ S_WRITE_ERROR_BIT $end
-$var parameter 6 _ S_WRITING_1 $end
-$var parameter 6 ` S_WRITING_2 $end
-$var parameter 6 a S_WRITING_WAITING_FOR_SIGNAL $end
-$var parameter 1 b WLN_V_GND $end
-$var parameter 1 c WLN_V_MID $end
-$var parameter 1 d WLP_V_HIGH $end
-$var parameter 1 e WLP_V_MID $end
-$var parameter 1 f WRITING_NOT_SUCCESSFUL $end
-$var parameter 1 g WRITING_SUCCESSFUL $end
-$var reg 2 h BL_reg [1:0] $end
-$var reg 2 i BL_reg_PREPARE_WRITING_2 [1:0] $end
-$var reg 4 j PL_reg [3:0] $end
-$var reg 4 k PL_reg_PREPARE_WRITING_2 [3:0] $end
-$var reg 1 l PRG_reg $end
-$var reg 2 m WLN_reg [1:0] $end
-$var reg 2 n WLP_reg [1:0] $end
-$var reg 2 o counter [1:0] $end
-$var reg 2 p data_in_reg [1:0] $end
-$var reg 2 q data_in_reg_1 [1:0] $end
-$var reg 2 r data_in_reg_2 [1:0] $end
-$var reg 2 s data_out_reg [1:0] $end
-$var reg 1 t read_active_reg $end
-$var reg 5 u state [4:0] $end
-$var reg 2 v write_row [1:0] $end
-$var reg 1 w writing_successful_reg $end
-$var integer 32 x i [31:0] $end
+$var parameter 6 T S_PREPARE_READING $end
+$var parameter 6 U S_PREPARE_WRITING_1 $end
+$var parameter 6 V S_PREPARE_WRITING_2 $end
+$var parameter 6 W S_PREPARE_WRITING_3 $end
+$var parameter 6 X S_PREPARE_WRITING_4 $end
+$var parameter 6 Y S_PREPARE_WRITING_5 $end
+$var parameter 6 Z S_READING $end
+$var parameter 6 [ S_READING_POSSIBLE $end
+$var parameter 6 \ S_WRITE_ERROR_BIT $end
+$var parameter 6 ] S_WRITING_1 $end
+$var parameter 6 ^ S_WRITING_2 $end
+$var parameter 6 _ S_WRITING_WAITING_FOR_SIGNAL $end
+$var parameter 1 ` WLN_V_GND $end
+$var parameter 1 a WLN_V_MID $end
+$var parameter 1 b WLP_V_HIGH $end
+$var parameter 1 c WLP_V_MID $end
+$var parameter 1 d WRITING_NOT_SUCCESSFUL $end
+$var parameter 1 e WRITING_SUCCESSFUL $end
+$var reg 2 f BL_reg [1:0] $end
+$var reg 2 g BL_reg_PREPARE_WRITING_2 [1:0] $end
+$var reg 4 h PL_reg [3:0] $end
+$var reg 4 i PL_reg_PREPARE_WRITING_2 [3:0] $end
+$var reg 1 j PRG_reg $end
+$var reg 2 k WLN_reg [1:0] $end
+$var reg 2 l WLP_reg [1:0] $end
+$var reg 2 m counter [1:0] $end
+$var reg 2 n data_in_reg [1:0] $end
+$var reg 2 o data_in_reg_1 [1:0] $end
+$var reg 2 p data_in_reg_2 [1:0] $end
+$var reg 2 q data_out_reg [1:0] $end
+$var reg 1 r read_active_reg $end
+$var reg 5 s state [4:0] $end
+$var reg 2 t write_row [1:0] $end
+$var reg 1 u writing_successful_reg $end
+$var integer 32 v i [31:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
-1g
-0f
 1e
 0d
-0c
-1b
-b10000 a
-b1011 `
-b1010 _
-b11001 ^
-b10111 ]
-b10101 \
-b1000 [
-b111 Z
-b110 Y
-b101 X
-b100 W
-b10011 V
-b10010 U
+1c
+0b
+0a
+1`
+b10000 _
+b1011 ^
+b1010 ]
+b11001 \
+b10111 [
+b10101 Z
+b1000 Y
+b111 X
+b110 W
+b101 V
+b100 U
 b10001 T
 b1111 S
 b1110 R
@@ -161,23 +157,23 @@ b10 '
 $end
 #0
 $dumpvars
-b10 x
-xw
-bx v
-bx u
-xt
+b10 v
+xu
+bx t
 bx s
-bx r
+xr
 bx q
 bx p
 bx o
 bx n
 bx m
-xl
-b1xx k
-bx j
-b1x i
+bx l
+bx k
+xj
+b1xx i
 bx h
+b1x g
+bx f
 b1 7
 bx 6
 b0 5
@@ -200,7 +196,7 @@ bx "
 x!
 $end
 #1000
-b0 u
+b0 s
 1*
 #2000
 0*
@@ -209,133 +205,143 @@ b0 u
 #4000
 0*
 #5000
-b10 x
-b100 k
-b10 i
-b1 u
-b0 v
-b0 o
+b10 v
+b100 i
+b10 g
+b1 s
+b0 t
+b0 m
 0!
-0t
+0r
 b11 #
 b11 4
-b11 n
+b11 l
 b11 $
 b11 3
-b11 m
+b11 k
 b0 %
 b0 1
-b0 j
+b0 h
 b0 &
 b0 0
-b0 h
+b0 f
 1*
 0.
 #6000
 0*
 #7000
-b10 u
-b0 q
+b10 s
+b0 o
 1*
 #8000
 0*
 #9000
-b11 u
-b0 r
+b11 s
+b0 p
 1*
 #10000
 0*
 #11000
-b100 u
-b0 p
+b100 s
+b0 n
 1*
 #12000
 0*
 #13000
-b101 u
+b101 s
+12
+1j
 b0 $
 b0 3
-b0 m
+b0 k
 1*
 #14000
 0*
 #15000
-b10 x
-b110 u
+b10 v
+b110 s
 b100 %
 b100 1
-b100 j
+b100 h
 b10 &
 b10 0
-b10 h
+b10 f
 1*
 #16000
 0*
 #17000
-b111 u
+b111 s
 b11 $
 b11 3
-b11 m
+b11 k
 1*
 #18000
 0*
 #19000
-b10 x
-b111 k
-b1000 u
+b10 v
+b111 i
+b1000 s
 b111 %
 b111 1
-b111 j
+b111 h
 1*
 #20000
 0*
 #21000
-b1001 u
-12
-1l
+b1001 s
 1*
 #22000
 0*
 #23000
-b1 o
+b1 m
 1*
 #24000
 0*
 #25000
-b10 o
+b10 m
 1*
 #26000
 0*
 #27000
-b1110 u
+b1110 s
 1*
 #28000
 0*
 #29000
-b10 x
-b100 k
-b1111 u
+b10 v
+b100 i
+b1111 s
 b100 %
 b100 1
-b100 j
+b100 h
 1*
 #30000
 0*
 #31000
-b10 x
-b100 k
-b10 i
-b10001 u
+b10 v
+b100 i
+b10 g
+b10001 s
 b0 &
 b0 0
-b0 h
+b0 f
 b0 %
 b0 1
-b0 j
+b0 h
 1*
 #32000
 0*
 #33000
+b10 v
+b100 i
+b11 g
+b10100 s
+02
+0j
+b1 &
+b1 0
+b1 f
+b0 m
 1*
 #34000
 0*

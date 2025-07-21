@@ -10,6 +10,7 @@ module FSM #(
     input [ADDR_WIDTH-1:0] column, 
     input [A-1:0] data_in, 
     input writing_successful,
+    input output_read_circuit,
     output [2*B-1:0] PL,
     output [B-1:0] BL,
     output [A-1:0] WLN,
@@ -43,6 +44,7 @@ module FSM #(
     //parameter of the PRG output
     localparam PRG_READING = 1'b0;
     localparam PRG_WRITING = 1'b1;
+    
 
 
 
@@ -68,11 +70,12 @@ module FSM #(
         //S_PREPARE_READING_2 = 18,
         //S_PREPARE_READING_3 = 19,
         S_GO_NEXT_CELL = 20,
-        S_READING = 21,
+        S_READING_1 = 21,
         S_DESELECT_CELL_READING = 22,
         S_READING_POSSIBLE = 23,
         S_NO_FALSE_BITS_Q = 24,
-        S_WRITE_ERROR_BIT = 25;
+        S_WRITE_ERROR_BIT = 25,
+        S_READING_2 = 26;
 
     reg [4:0] state;
     reg [2*B-1:0] PL_reg;          
@@ -137,6 +140,7 @@ module FSM #(
                     read_active_reg <= READ_NOT_ACTIVE;
                     counter <= 0;
                     write_row <= 0;
+                    read_row <= 0;
                     //next state
                     if(mode == MODE_READING) begin
                         state <= S_IDLE;     //TODO
@@ -265,7 +269,7 @@ module FSM #(
                     end else begin
                         //cell was not yet written
                         //TODO deal with possible endless loops
-                        state <= S_WRITING_WAITING_FOR_SIGNAL;
+                        state <= S_WRITING_2;
                     end
                 end
 
@@ -306,7 +310,7 @@ module FSM #(
                 end
 
                 S_PREPARE_READING: begin
-                    $display("state = S_PREPARE_READING_1");
+                    $display("state = S_PREPARE_READING");
                     //reset counter
                     counter <= 0;
                     //set selected BL to 5 V
@@ -314,10 +318,200 @@ module FSM #(
                     //set PRG to 0 V
                     PRG_reg <= PRG_READING;
                     //set selected PL to 1.8 V
-                    PL_reg[column] <= PL_V_READ;
+                    PL_reg[2*column+:2] <= PL_V_READ;
                     //next state
                     state <= S_GO_NEXT_CELL;
                 end
+
+                S_GO_NEXT_CELL: begin
+                    $display("state = S_GO_NEXT_CELL");
+                    if((read_row >= A) && (mode == MODE_READING)) begin
+                        //reading is finished
+                        //next state
+                        state <= S_READING_POSSIBLE;
+                    end else if ((read_row >= A) && (mode == MODE_WRITING)) begin
+                        //proofreading is finished
+                        //next state
+                        state <= S_NO_FALSE_BITS_Q;
+                    end else begin
+                        //reading or proofreading not finished yet
+                        next state
+                        state <= S_READING_1;
+                    end
+                end
+
+                S_READING_1: begin
+                    $display("state = S_READING_1");
+                    //set selected WLN to 5 V
+                    WLN_reg[read_row] <= WLN_V_MID;
+                    //next state
+                    state <= S_DESELECT_CELL_READING_1;
+                end
+
+                S_READING_2: begin
+                    $display("state = S_READING_2");
+                    //save output_read_circuit
+                    data_out_reg[read_row] <= output_read_circuit;
+                    //next state
+                    state <= S_DESELECT_CELL_READING_1;
+                end
+
+
+                S_DESELECT_CELL_READING_1: begin
+                    $display("state = S_DESELECT_CELL_READING_1");
+                    //set selected WLN to 0 V
+                    WLN_reg[read_row] <= WLN_GND;
+                    //next state
+                    state <= S_DESELECT_CELL_READING_2;
+                end
+
+                S_DESELECT_CELL_READING_2: begin
+                    $display("state = S_DESELECT_CELL_READING_2");
+                    //next time read the following cell
+                    read_row <= read_row + 1
+                    //next state
+                    state <= S_GO_NEXT_CELL;
+                end
+
+                S_READING_POSSIBLE: begin
+                    $display("state = S_READING_POSSIBLE");
+                    //reading is now possible
+                    read_active_reg <= READ_ACTIVE;
+                    //next state
+                    state <= S_IDLE;
+                end
+
+                S_NO_FALSE_BITS_Q: begin
+                    $display("state = S_NO_FALSE_BITS_Q");
+                    if(data_out_reg == data_in_reg) begin
+                        //everything correct, finish writing algorithm
+                        //next state
+                        state <= S_IDLE;
+                    end else begin
+                        //a mistake was found
+                        //next state
+                        state <= S_WRITE_ERROR_BIT_1;
+                    end
+                end
+
+                S_WRITE_ERROR_BIT_1: begin
+                    $display("state = S_WRITE_ERROR_BIT_1");
+                    //set all WLN to 5 V
+                    WLN_reg <= {A{WLN_V_MID}};
+                    //next state
+                    state <= S_WRITE_ERROR_BIT_2;
+                end
+
+                S_WRITE_ERROR_BIT_2: begin
+                    $display("state = S_WRITE_ERROR_BIT_2");
+                    //set all unselected BL/PL to 5 V
+                    BL_reg <= BL_reg_WRITE_STEP_2;
+                    PL_reg <= PL_reg_WRITE_STEP_2;
+                    //next state
+                    state <= S_WRITE_ERROR_BIT_3;
+                end
+
+                S_WRITE_ERROR_BIT_3: begin
+                    $display("state = S_WRITE_ERROR_BIT_3");
+                    //set all WLN to 0 V
+                    WLN_reg <= {A{WLN_V_GND}};
+                    //next state
+                    state <= S_WRITE_ERROR_BIT_4;
+                end
+
+                S_WRITE_ERROR_BIT_4: begin
+                    $display("state = S_WRITE_ERROR_BIT_4");
+                    //set selected PL to 10 V
+                    PL_reg[column*2+:2] <= PL_V_HIGH;
+                    //set PRG to 5 V
+                    PRG_reg <= PRG_WRITING;
+                    //next state
+                    state <= S_WRITE_ERROR_BIT_5;
+                end
+
+                S_WRITE_ERROR_BIT_5: begin
+                    $display("state = S_WRITE_ERROR_BIT_5");
+                    //set last WLP to 10 V
+                    WLP_reg[A-1] <= WLP_V_HIGH;
+                    //next state 
+                    state <= S_WRITE_ERROR_BIT_6;
+                end
+
+                S_WRITE_ERROR_BIT_6: begin
+                    $display("state = S_WRITE_ERROR_BIT_6");
+                    //set last WLN to 5 V
+                    WLN_reg[A-1] <= WLN_V_MID;
+                    //was writing successful
+                    if(writing_successful) begin
+                        writing_successful_reg <= writing_successful;
+                    end
+                    //next state
+                    state <= S_WRITE_ERROR_BIT_7;
+                end
+
+                S_WRITE_ERROR_BIT_7: begin
+                    $display("state = S_WRITE_ERROR_BIT_7");
+                    //next state
+                    if(writing_successful_reg || writing_successful) begin
+                        //cell was written correctly
+                        state <= S_WRITE_ERROR_BIT_8;
+                    end else begin
+                        //cell was not yet written
+                        //TODO deal with possible endless loops
+                        state <= S_WRITE_ERROR_BIT_6;
+                    end
+                end
+
+                S_WRITE_ERROR_BIT_8: begin
+                    $display("state = S_WRITE_ERROR_BIT_8");
+                    //set last WLN to 0 V
+                    WLN_reg[A-1] <= WLN_V_GND;
+                    //next state 
+                    state <= S_WRITE_ERROR_BIT_9;
+                end
+
+                S_WRITE_ERROR_BIT_9: begin
+                    $display("state = S_WRITE_ERROR_BIT_9");
+                    //set last WLP to 5 V
+                    WLP_reg[A-1] <= WLP_V_GND;
+                    //next state
+                    state <= S_WRITE_ERROR_BIT_10;
+                end
+
+                S_WRITE_ERROR_BIT_10: begin
+                    $display("state = S_WRITE_ERROR_BIT_10");
+                    //set selected PL/BL to 0 V
+                    PL_reg[2*column+:2] <= PL_V_GND;
+                    BL_reg[column] <= BL_V_GND;
+                    //next state
+                    state <= S_WRITE_ERROR_BIT_11;
+                end
+
+                S_WRITE_ERROR_BIT_11: begin
+                    $display("state = S_WRITE_ERROR_BIT_11");
+                    //set other PL/BL to 0 V
+                    //since PL and BL of selected cells are already at 0 V, all
+                    //PL and BL are set to 0 V
+                    PL_reg <= {B{PL_V_GND}};
+                    BL_reg <= {B{BL_V_GND}};
+                    //next state
+                    state <= S_IDLE;
+                end
+
+
+
+
+
+
+
+
+
+                    
+
+                    
+
+
+
 
 
 
