@@ -1,3 +1,5 @@
+//cell must be at least A>=2 && B>=2 (because of S_WRITE_ERROR_BIT_2)
+
 module FSM #(
     parameter A = 2,
     B = 2,
@@ -48,7 +50,7 @@ module FSM #(
 
 
 
-    localparam [5:0]
+    localparam [6:0]
         S_IDLE = 0,
         S_COLLECT_DATA_1 = 1,
         S_COLLECT_DATA_2 = 2,
@@ -71,13 +73,26 @@ module FSM #(
         //S_PREPARE_READING_3 = 19,
         S_GO_NEXT_CELL = 20,
         S_READING_1 = 21,
-        S_DESELECT_CELL_READING = 22,
+        //S_DESELECT_CELL_READING = 22,
         S_READING_POSSIBLE = 23,
         S_NO_FALSE_BITS_Q = 24,
         S_WRITE_ERROR_BIT = 25,
-        S_READING_2 = 26;
+        S_READING_2 = 26,
+        S_WRITE_ERROR_BIT_1 = 27,
+        S_WRITE_ERROR_BIT_2 = 28,
+        S_WRITE_ERROR_BIT_3 = 29,
+        S_WRITE_ERROR_BIT_4 = 30,
+        S_WRITE_ERROR_BIT_5 = 31,
+        S_WRITE_ERROR_BIT_6 = 32,
+        S_WRITE_ERROR_BIT_7 = 33,
+        S_WRITE_ERROR_BIT_8 = 34,
+        S_WRITE_ERROR_BIT_9 = 35,
+        S_WRITE_ERROR_BIT_10 = 36,
+        S_WRITE_ERROR_BIT_11 = 37,
+        S_DESELECT_CELL_READING_1 = 38,
+        S_DESELECT_CELL_READING_2 = 39;
 
-    reg [4:0] state;
+    reg [5:0] state;
     reg [2*B-1:0] PL_reg;          
     reg [B-1:0] BL_reg;       
     reg [A-1:0] WLN_reg;
@@ -141,9 +156,17 @@ module FSM #(
                     counter <= 0;
                     write_row <= 0;
                     read_row <= 0;
+                    PRG_reg <= PRG_READING;
+                    writing_successful_reg <= WRITING_NOT_SUCCESSFUL;
+                    data_in_reg_1 <= 0;
+                    data_in_reg_2 <= 0;
+                    data_in_reg <= 0;
+                    data_out_reg <= 0;
+                    BL_reg_PREPARE_WRITING_2 <= {B{BL_V_GND}};
+                    PL_reg_PREPARE_WRITING_2 <= {B{PL_V_GND}};
                     //next state
                     if(mode == MODE_READING) begin
-                        state <= S_IDLE;     //TODO
+                        state <= S_PREPARE_READING;
                     end else if(mode == MODE_WRITING) begin
                         state <= S_COLLECT_DATA_1;
                     end else if(mode == MODE_IDLE) begin
@@ -252,17 +275,15 @@ module FSM #(
                     $display("state = S_WRITING_2");
                     //set selected WLN to 5 V
                     WLN_reg[write_row] <= WLN_V_MID;
+                    writing_successful_reg <= writing_successful;
                     //next state
-                    //only go to S_DESELECT_CELL_WRITING after successful writing
-                    if(writing_successful) begin
-                        writing_successful_reg <= writing_successful;
-                    end
                     state <= S_WRITING_WAITING_FOR_SIGNAL;
                 end
 
                 S_WRITING_WAITING_FOR_SIGNAL: begin
                     $display("state = S_WRITING_WAITING_FOR_SIGNAL");
                     //next state
+                    //only go to S_DESELECT_CELL_WRITING after successful writing
                     if(writing_successful_reg || writing_successful) begin
                         //cell was written correctly
                         state <= S_DESELECT_CELL_WRITING_1;
@@ -335,7 +356,7 @@ module FSM #(
                         state <= S_NO_FALSE_BITS_Q;
                     end else begin
                         //reading or proofreading not finished yet
-                        next state
+                        //next state
                         state <= S_READING_1;
                     end
                 end
@@ -345,7 +366,7 @@ module FSM #(
                     //set selected WLN to 5 V
                     WLN_reg[read_row] <= WLN_V_MID;
                     //next state
-                    state <= S_DESELECT_CELL_READING_1;
+                    state <= S_READING_2;
                 end
 
                 S_READING_2: begin
@@ -360,7 +381,7 @@ module FSM #(
                 S_DESELECT_CELL_READING_1: begin
                     $display("state = S_DESELECT_CELL_READING_1");
                     //set selected WLN to 0 V
-                    WLN_reg[read_row] <= WLN_GND;
+                    WLN_reg[read_row] <= WLN_V_GND;
                     //next state
                     state <= S_DESELECT_CELL_READING_2;
                 end
@@ -368,7 +389,7 @@ module FSM #(
                 S_DESELECT_CELL_READING_2: begin
                     $display("state = S_DESELECT_CELL_READING_2");
                     //next time read the following cell
-                    read_row <= read_row + 1
+                    read_row <= read_row + 1;
                     //next state
                     state <= S_GO_NEXT_CELL;
                 end
@@ -405,8 +426,8 @@ module FSM #(
                 S_WRITE_ERROR_BIT_2: begin
                     $display("state = S_WRITE_ERROR_BIT_2");
                     //set all unselected BL/PL to 5 V
-                    BL_reg <= BL_reg_WRITE_STEP_2;
-                    PL_reg <= PL_reg_WRITE_STEP_2;
+                    BL_reg[B-2:0] <= {(B-1){BL_V_MID}};
+                    PL_reg[B*2-3:0] <= {(B-1){PL_V_MID}};
                     //next state
                     state <= S_WRITE_ERROR_BIT_3;
                 end
@@ -423,7 +444,7 @@ module FSM #(
                     $display("state = S_WRITE_ERROR_BIT_4");
                     //set selected PL to 10 V
                     PL_reg[column*2+:2] <= PL_V_HIGH;
-                    //set PRG to 5 V
+                    //set PRG to writing mode
                     PRG_reg <= PRG_WRITING;
                     //next state
                     state <= S_WRITE_ERROR_BIT_5;
@@ -473,7 +494,7 @@ module FSM #(
                 S_WRITE_ERROR_BIT_9: begin
                     $display("state = S_WRITE_ERROR_BIT_9");
                     //set last WLP to 5 V
-                    WLP_reg[A-1] <= WLP_V_GND;
+                    WLP_reg[A-1] <= WLP_V_MID;
                     //next state
                     state <= S_WRITE_ERROR_BIT_10;
                 end
