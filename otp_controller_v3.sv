@@ -106,6 +106,7 @@ module FSM #(
     reg [2*B-1:0] PL_reg_PREPARE_WRITING_2;
     reg PRG_reg;
     reg writing_successful_reg;
+    reg [1:0] mode_reg;
 
     assign BL = BL_reg;
     assign PL = PL_reg;
@@ -120,9 +121,7 @@ module FSM #(
     reg [$clog2(A):0] write_row;
     reg [$clog2(A):0] read_row;
 
-    initial begin   
-        $display("Hello, World");
-    end
+   
 
 
     //prepare for-loop for S_PREPARE_WRITING_2
@@ -152,6 +151,9 @@ module FSM #(
                     PL_reg <= {B{PL_V_GND}};
                     WLN_reg <= {A{WLN_V_GND}};
                     WLP_reg <= {A{WLP_V_MID}};
+                    if(mode_reg == MODE_IDLE) begin
+                        mode_reg <= mode;
+                    end
                     read_active_reg <= READ_NOT_ACTIVE;
                     counter <= 0;
                     write_row <= 0;
@@ -165,14 +167,14 @@ module FSM #(
                     BL_reg_PREPARE_WRITING_2 <= {B{BL_V_GND}};
                     PL_reg_PREPARE_WRITING_2 <= {B{PL_V_GND}};
                     //next state
-                    if(mode == MODE_READING) begin
+                    if(mode_reg == MODE_READING) begin
                         state <= S_PREPARE_READING;
-                    end else if(mode == MODE_WRITING) begin
+                    end else if(mode_reg == MODE_WRITING) begin
                         state <= S_COLLECT_DATA_1;
-                    end else if(mode == MODE_IDLE) begin
+                    end else if(mode_reg == MODE_IDLE) begin
                         state <= S_IDLE;
                     end else begin
-                        $display("WARNUNG: Ungültiger mode = %b", mode);
+                        $display("WARNUNG: Ungültiger mode = %b", mode_reg);
                     end
                 end
 
@@ -306,6 +308,8 @@ module FSM #(
                     $display("state = S_DESELECT_CELL_WRITING_2");
                     //set selected WLP to 5 V
                     WLP_reg[write_row] <= WLP_V_MID;
+                    //this cell is finished, go next
+                    counter = counter + 1;
                     //next state 
                     state <= S_FIND_NEXT_BIT;
                 end
@@ -346,11 +350,19 @@ module FSM #(
 
                 S_GO_NEXT_CELL: begin
                     $display("state = S_GO_NEXT_CELL");
-                    if((read_row >= A) && (mode == MODE_READING)) begin
+                    $display("read_row:");
+                    $display(read_row);
+                    $display("A:");
+                    $display(A);
+                    $display("mode_reg:");
+                    $display(mode_reg);
+                    if((read_row >= A) && (mode_reg == MODE_READING)) begin
+                        $display("read_row >= A) && (mode_reg == MODE_READING)");
                         //reading is finished
                         //next state
                         state <= S_READING_POSSIBLE;
-                    end else if ((read_row >= A) && (mode == MODE_WRITING)) begin
+                    end else if ((read_row >= A) && (mode_reg == MODE_WRITING)) begin
+                        $display("(read_row >= A) && (mode_reg == MODE_WRITING)");
                         //proofreading is finished
                         //next state
                         state <= S_NO_FALSE_BITS_Q;
