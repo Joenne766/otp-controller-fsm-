@@ -12,7 +12,7 @@ reg reset = 0;
 reg [1:0] mode = 1;
 reg [ADDR_WIDTH-1:0] column = 0; 
 logic [A-1:0] data_in = 0;
-reg writing_successful = 0; 
+reg writing_successful = 1; 
 
 wire [2*B-1:0] PL;
 wire [B-1:0] BL;
@@ -54,7 +54,7 @@ initial begin
     reset = 1;
     #5 reset = 0;
 
-    #2000 $finish;
+    #200 $finish;
 end
 
 
