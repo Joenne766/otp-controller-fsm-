@@ -69,15 +69,21 @@ FSM #(
     .WLN(WLN),
     .WLP(WLP),
     .read_active(read_active),
-    .data_out(data_out)
+    .data_out(data_out),
+    .PRG(PRG)
 );
 
 integer i, j;
-always@(posedge clk) begin
+always@(negedge clk) begin
     for(i = 0; i <= A-1; i = i + 1) begin
         for(j = 0; j <= B-1; j = j + 1) begin
+            //test if currently writing
             if((PRG == PRG_WRITING) && (WLP[i] == WLP_V_HIGH) && (WLN[i] == WLN_V_MID) && (BL[j] == BL_V_GND) && (PL[j*2+:2] == PL_V_HIGH)) begin
                 $display("cell [%0d][%0d] was written", i, j);
+            end
+            //test if currently reading
+            if((PRG == PRG_READING) && (WLP[i] == WLP_V_MID) && (WLN[i] == WLN_V_MID) && (BL[j] == BL_V_MID) && (PL[j*2+:2] == PL_V_READ)) begin
+                $display("cell [%0d][%0d] was read", i, j);
             end
         end
     end
@@ -94,7 +100,7 @@ initial begin
     reset = 0;
     #10; 
     mode = MODE_WRITING;
-    #150;
+    #5;
     mode = MODE_IDLE;
 
 
