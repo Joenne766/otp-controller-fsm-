@@ -2,8 +2,8 @@
 
 module testbench;
 
-localparam A = 2;
-localparam B = 2;
+localparam A = 5;
+localparam B = 5;
 localparam ADDR_WIDTH = $clog2(B);
 
 

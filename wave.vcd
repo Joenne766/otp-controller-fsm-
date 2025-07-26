@@ -1,5 +1,5 @@
 $date
-	Tue Jul 22 11:53:40 2025
+	Sat Jul 26 10:58:39 2025
 $end
 $version
 	Icarus Verilog
@@ -10,12 +10,12 @@ $end
 $scope module testbench $end
 $var wire 1 ! output_read_circuit $end
 $var wire 1 " read_active $end
-$var wire 2 # data_out [1:0] $end
-$var wire 2 $ WLP [1:0] $end
-$var wire 2 % WLN [1:0] $end
+$var wire 5 # data_out [4:0] $end
+$var wire 5 $ WLP [4:0] $end
+$var wire 5 % WLN [4:0] $end
 $var wire 1 & PRG $end
-$var wire 4 ' PL [3:0] $end
-$var wire 2 ( BL [1:0] $end
+$var wire 10 ' PL [9:0] $end
+$var wire 5 ( BL [4:0] $end
 $var parameter 32 ) A $end
 $var parameter 32 * ADDR_WIDTH $end
 $var parameter 32 + B $end
@@ -39,170 +39,170 @@ $var parameter 1 < WLP_V_MID $end
 $var parameter 1 = WRITING_NOT_SUCCESSFUL $end
 $var parameter 1 > WRITING_SUCCESSFUL $end
 $var reg 1 ? clk $end
-$var reg 1 @ column $end
-$var reg 2 A data_in [1:0] $end
+$var reg 3 @ column [2:0] $end
+$var reg 5 A data_in [4:0] $end
 $var reg 2 B mode [1:0] $end
 $var reg 1 C reset $end
 $var reg 1 D writing_successful $end
 $var integer 32 E i [31:0] $end
 $var integer 32 F j [31:0] $end
 $scope module dut $end
-$var wire 2 G BL [1:0] $end
-$var wire 4 H PL [3:0] $end
+$var wire 5 G BL [4:0] $end
+$var wire 10 H PL [9:0] $end
 $var wire 1 & PRG $end
-$var wire 2 I WLN [1:0] $end
-$var wire 2 J WLP [1:0] $end
+$var wire 5 I WLN [4:0] $end
+$var wire 5 J WLP [4:0] $end
 $var wire 1 ? clk $end
-$var wire 1 @ column $end
-$var wire 2 K data_in [1:0] $end
-$var wire 2 L data_out [1:0] $end
-$var wire 2 M mode [1:0] $end
+$var wire 3 K column [2:0] $end
+$var wire 5 L data_in [4:0] $end
+$var wire 5 M data_out [4:0] $end
+$var wire 2 N mode [1:0] $end
 $var wire 1 ! output_read_circuit $end
 $var wire 1 " read_active $end
 $var wire 1 C reset $end
 $var wire 1 D writing_successful $end
-$var parameter 32 N A $end
-$var parameter 32 O ADDR_WIDTH $end
-$var parameter 32 P B $end
-$var parameter 1 Q BL_V_GND $end
-$var parameter 1 R BL_V_MID $end
-$var parameter 2 S MODE_IDLE $end
-$var parameter 2 T MODE_READING $end
-$var parameter 2 U MODE_WRITING $end
-$var parameter 2 V PL_V_GND $end
-$var parameter 2 W PL_V_HIGH $end
-$var parameter 2 X PL_V_MID $end
-$var parameter 2 Y PL_V_READ $end
-$var parameter 1 Z PRG_READING $end
-$var parameter 1 [ PRG_WRITING $end
-$var parameter 1 \ READ_ACTIVE $end
-$var parameter 1 ] READ_NOT_ACTIVE $end
-$var parameter 7 ^ S_COLLECT_DATA_1 $end
-$var parameter 7 _ S_COLLECT_DATA_2 $end
-$var parameter 7 ` S_COMPARE_DATA $end
-$var parameter 7 a S_DESELECT_CELL_READING_1 $end
-$var parameter 7 b S_DESELECT_CELL_READING_2 $end
-$var parameter 7 c S_DESELECT_CELL_WRITING_1 $end
-$var parameter 7 d S_DESELECT_CELL_WRITING_2 $end
-$var parameter 7 e S_FIND_NEXT_BIT $end
-$var parameter 7 f S_GO_NEXT_CELL $end
-$var parameter 7 g S_IDLE $end
-$var parameter 7 h S_NO_FALSE_BITS_Q $end
-$var parameter 7 i S_POWER_DOWN_1 $end
-$var parameter 7 j S_POWER_DOWN_2 $end
-$var parameter 7 k S_PREPARE_READING $end
-$var parameter 7 l S_PREPARE_WRITING_1 $end
-$var parameter 7 m S_PREPARE_WRITING_2 $end
-$var parameter 7 n S_PREPARE_WRITING_3 $end
-$var parameter 7 o S_PREPARE_WRITING_4 $end
-$var parameter 7 p S_PREPARE_WRITING_5 $end
-$var parameter 7 q S_READING_1 $end
-$var parameter 7 r S_READING_2 $end
-$var parameter 7 s S_READING_POSSIBLE $end
-$var parameter 7 t S_WRITE_ERROR_BIT $end
-$var parameter 7 u S_WRITE_ERROR_BIT_1 $end
-$var parameter 7 v S_WRITE_ERROR_BIT_10 $end
-$var parameter 7 w S_WRITE_ERROR_BIT_11 $end
-$var parameter 7 x S_WRITE_ERROR_BIT_2 $end
-$var parameter 7 y S_WRITE_ERROR_BIT_3 $end
-$var parameter 7 z S_WRITE_ERROR_BIT_4 $end
-$var parameter 7 { S_WRITE_ERROR_BIT_5 $end
-$var parameter 7 | S_WRITE_ERROR_BIT_6 $end
-$var parameter 7 } S_WRITE_ERROR_BIT_7 $end
-$var parameter 7 ~ S_WRITE_ERROR_BIT_8 $end
-$var parameter 7 !" S_WRITE_ERROR_BIT_9 $end
-$var parameter 7 "" S_WRITING_1 $end
-$var parameter 7 #" S_WRITING_2 $end
-$var parameter 7 $" S_WRITING_WAITING_FOR_SIGNAL $end
-$var parameter 1 %" WLN_V_GND $end
-$var parameter 1 &" WLN_V_MID $end
-$var parameter 1 '" WLP_V_HIGH $end
-$var parameter 1 (" WLP_V_MID $end
-$var parameter 1 )" WRITING_NOT_SUCCESSFUL $end
-$var parameter 1 *" WRITING_SUCCESSFUL $end
-$var reg 2 +" BL_reg [1:0] $end
-$var reg 2 ," BL_reg_PREPARE_WRITING_2 [1:0] $end
-$var reg 4 -" PL_reg [3:0] $end
-$var reg 4 ." PL_reg_PREPARE_WRITING_2 [3:0] $end
-$var reg 1 /" PRG_reg $end
-$var reg 2 0" WLN_reg [1:0] $end
-$var reg 2 1" WLP_reg [1:0] $end
-$var reg 2 2" counter [1:0] $end
-$var reg 2 3" data_in_reg [1:0] $end
-$var reg 2 4" data_in_reg_1 [1:0] $end
-$var reg 2 5" data_in_reg_2 [1:0] $end
-$var reg 2 6" data_out_reg [1:0] $end
-$var reg 2 7" mode_reg [1:0] $end
-$var reg 1 8" read_active_reg $end
-$var reg 2 9" read_row [1:0] $end
-$var reg 6 :" state [5:0] $end
-$var reg 2 ;" write_row [1:0] $end
-$var reg 1 <" writing_successful_reg $end
-$var integer 32 =" i [31:0] $end
+$var parameter 32 O A $end
+$var parameter 32 P ADDR_WIDTH $end
+$var parameter 32 Q B $end
+$var parameter 1 R BL_V_GND $end
+$var parameter 1 S BL_V_MID $end
+$var parameter 2 T MODE_IDLE $end
+$var parameter 2 U MODE_READING $end
+$var parameter 2 V MODE_WRITING $end
+$var parameter 2 W PL_V_GND $end
+$var parameter 2 X PL_V_HIGH $end
+$var parameter 2 Y PL_V_MID $end
+$var parameter 2 Z PL_V_READ $end
+$var parameter 1 [ PRG_READING $end
+$var parameter 1 \ PRG_WRITING $end
+$var parameter 1 ] READ_ACTIVE $end
+$var parameter 1 ^ READ_NOT_ACTIVE $end
+$var parameter 7 _ S_COLLECT_DATA_1 $end
+$var parameter 7 ` S_COLLECT_DATA_2 $end
+$var parameter 7 a S_COMPARE_DATA $end
+$var parameter 7 b S_DESELECT_CELL_READING_1 $end
+$var parameter 7 c S_DESELECT_CELL_READING_2 $end
+$var parameter 7 d S_DESELECT_CELL_WRITING_1 $end
+$var parameter 7 e S_DESELECT_CELL_WRITING_2 $end
+$var parameter 7 f S_FIND_NEXT_BIT $end
+$var parameter 7 g S_GO_NEXT_CELL $end
+$var parameter 7 h S_IDLE $end
+$var parameter 7 i S_NO_FALSE_BITS_Q $end
+$var parameter 7 j S_POWER_DOWN_1 $end
+$var parameter 7 k S_POWER_DOWN_2 $end
+$var parameter 7 l S_PREPARE_READING $end
+$var parameter 7 m S_PREPARE_WRITING_1 $end
+$var parameter 7 n S_PREPARE_WRITING_2 $end
+$var parameter 7 o S_PREPARE_WRITING_3 $end
+$var parameter 7 p S_PREPARE_WRITING_4 $end
+$var parameter 7 q S_PREPARE_WRITING_5 $end
+$var parameter 7 r S_READING_1 $end
+$var parameter 7 s S_READING_2 $end
+$var parameter 7 t S_READING_POSSIBLE $end
+$var parameter 7 u S_WRITE_ERROR_BIT $end
+$var parameter 7 v S_WRITE_ERROR_BIT_1 $end
+$var parameter 7 w S_WRITE_ERROR_BIT_10 $end
+$var parameter 7 x S_WRITE_ERROR_BIT_11 $end
+$var parameter 7 y S_WRITE_ERROR_BIT_2 $end
+$var parameter 7 z S_WRITE_ERROR_BIT_3 $end
+$var parameter 7 { S_WRITE_ERROR_BIT_4 $end
+$var parameter 7 | S_WRITE_ERROR_BIT_5 $end
+$var parameter 7 } S_WRITE_ERROR_BIT_6 $end
+$var parameter 7 ~ S_WRITE_ERROR_BIT_7 $end
+$var parameter 7 !" S_WRITE_ERROR_BIT_8 $end
+$var parameter 7 "" S_WRITE_ERROR_BIT_9 $end
+$var parameter 7 #" S_WRITING_1 $end
+$var parameter 7 $" S_WRITING_2 $end
+$var parameter 7 %" S_WRITING_WAITING_FOR_SIGNAL $end
+$var parameter 1 &" WLN_V_GND $end
+$var parameter 1 '" WLN_V_MID $end
+$var parameter 1 (" WLP_V_HIGH $end
+$var parameter 1 )" WLP_V_MID $end
+$var parameter 1 *" WRITING_NOT_SUCCESSFUL $end
+$var parameter 1 +" WRITING_SUCCESSFUL $end
+$var reg 5 ," BL_reg [4:0] $end
+$var reg 5 -" BL_reg_PREPARE_WRITING_2 [4:0] $end
+$var reg 10 ." PL_reg [9:0] $end
+$var reg 10 /" PL_reg_PREPARE_WRITING_2 [9:0] $end
+$var reg 1 0" PRG_reg $end
+$var reg 5 1" WLN_reg [4:0] $end
+$var reg 5 2" WLP_reg [4:0] $end
+$var reg 4 3" counter [3:0] $end
+$var reg 5 4" data_in_reg [4:0] $end
+$var reg 5 5" data_in_reg_1 [4:0] $end
+$var reg 5 6" data_in_reg_2 [4:0] $end
+$var reg 5 7" data_out_reg [4:0] $end
+$var reg 2 8" mode_reg [1:0] $end
+$var reg 1 9" read_active_reg $end
+$var reg 4 :" read_row [3:0] $end
+$var reg 6 ;" state [5:0] $end
+$var reg 4 <" write_row [3:0] $end
+$var reg 1 =" writing_successful_reg $end
+$var integer 32 >" i [31:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
-1*"
-0)"
-1("
+1+"
+0*"
+1)"
+0("
 0'"
-0&"
-1%"
-b10000 $"
-b1011 #"
-b1010 ""
-b100011 !"
-b100010 ~
-b100001 }
-b100000 |
-b11111 {
-b11110 z
-b11101 y
-b11100 x
-b100101 w
-b100100 v
-b11011 u
-b11001 t
-b10111 s
-b11010 r
-b10101 q
-b1000 p
-b111 o
-b110 n
-b101 m
-b100 l
-b10001 k
-b1111 j
-b1110 i
-b11000 h
-b0 g
-b10100 f
-b1001 e
-b1101 d
-b1100 c
-b100111 b
-b100110 a
-b11 `
-b10 _
-b1 ^
-0]
+1&"
+b10000 %"
+b1011 $"
+b1010 #"
+b100011 ""
+b100010 !"
+b100001 ~
+b100000 }
+b11111 |
+b11110 {
+b11101 z
+b11100 y
+b100101 x
+b100100 w
+b11011 v
+b11001 u
+b10111 t
+b11010 s
+b10101 r
+b1000 q
+b111 p
+b110 o
+b101 n
+b100 m
+b10001 l
+b1111 k
+b1110 j
+b11000 i
+b0 h
+b10100 g
+b1001 f
+b1101 e
+b1100 d
+b100111 c
+b100110 b
+b11 a
+b10 `
+b1 _
+0^
+1]
 1\
-1[
-0Z
-b10 Y
-b1 X
-b11 W
-b0 V
-b1 U
-b0 T
-b10 S
-1R
-0Q
-b10 P
-b1 O
-b10 N
+0[
+b10 Z
+b1 Y
+b11 X
+b0 W
+b1 V
+b0 U
+b10 T
+1S
+0R
+b101 Q
+b11 P
+b101 O
 1>
 0=
 1<
@@ -222,18 +222,19 @@ b0 /
 b10 .
 1-
 0,
-b10 +
-b1 *
-b10 )
+b101 +
+b11 *
+b101 )
 $end
 #0
 $dumpvars
-b10 ="
-x<"
+b101 >"
+x="
+bx <"
 bx ;"
 bx :"
-bx 9"
-x8"
+x9"
+bx 8"
 bx 7"
 bx 6"
 bx 5"
@@ -241,15 +242,15 @@ bx 4"
 bx 3"
 bx 2"
 bx 1"
-bx 0"
-x/"
-b1xx ."
-bx -"
-b1x ,"
-bx +"
-b10 M
-bx L
-b11 K
+x0"
+b1010101xx /"
+bx ."
+b1111x -"
+bx ,"
+b10 N
+bx M
+b11 L
+b0 K
 bx J
 bx I
 bx H
@@ -260,7 +261,7 @@ bx E
 1C
 b10 B
 b11 A
-0@
+b0 @
 0?
 bx (
 bx '
@@ -272,850 +273,918 @@ x"
 z!
 $end
 #1000
-b0 :"
+b0 ;"
 1?
 #2000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 0C
 #3000
-b10 ="
-b100 ."
-b10 ,"
+b101 >"
+b101010100 /"
+b11110 -"
 b0 #
-b0 L
-b0 6"
-b0 3"
-b0 5"
+b0 M
+b0 7"
 b0 4"
-0<"
+b0 6"
+b0 5"
+0="
 0&
-0/"
-b0 9"
-b0 ;"
-b0 2"
+00"
+b0 :"
+b0 <"
+b0 3"
 0"
-08"
-b11 $
-b11 J
-b11 1"
-b11 %
-b11 I
-b11 0"
+09"
+b11111 $
+b11111 J
+b11111 2"
+b11111 %
+b11111 I
+b11111 1"
 b0 '
 b0 H
-b0 -"
+b0 ."
 b0 (
 b0 G
-b0 +"
-b10 7"
+b0 ,"
+b10 8"
 1?
 #4000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #5000
-b0 ."
-b0 ,"
+b0 /"
+b0 -"
 1?
 #6000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #7000
 1?
 #8000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #9000
 1?
 #10000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #11000
 1?
 #12000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 b1 B
-b1 M
+b1 N
 #13000
-b1 7"
-b1 :"
+b1 ;"
+b1 8"
 1?
 #14000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #15000
-b10 :"
-b11 4"
-1?
-#16000
-b10 F
-b10 E
-0?
-#17000
-b11 :"
+b10 ;"
 b11 5"
 1?
+#16000
+b101 F
+b101 E
+0?
+#17000
+b11 ;"
+b11 6"
+1?
 b10 B
-b10 M
+b10 N
 #18000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #19000
-b100 :"
-b11 3"
+b100 ;"
+b11 4"
 1?
 #20000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #21000
-b101 :"
+b101 ;"
 1&
-1/"
+10"
 b0 %
 b0 I
-b0 0"
+b0 1"
 1?
 #22000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #23000
-b110 :"
+b110 ;"
 1?
 #24000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #25000
-b111 :"
-b11 %
-b11 I
-b11 0"
+b111 ;"
+b11111 %
+b11111 I
+b11111 1"
 1?
 #26000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #27000
-b10 ,"
-b10 ="
-b111 ."
-b1000 :"
+b11110 -"
+b101 >"
+b101010111 /"
+b1000 ;"
 b11 '
 b11 H
-b11 -"
+b11 ."
 1?
 #28000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #29000
-b1001 :"
+b1001 ;"
 1?
 #30000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #31000
-b1010 :"
+b1010 ;"
 1?
 #32000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #33000
-b1011 :"
-b10 $
-b10 J
-b10 1"
+b1011 ;"
+b11110 $
+b11110 J
+b11110 2"
 1?
 #34000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #35000
-b10000 :"
-1<"
-b10 %
-b10 I
-b10 0"
+b10000 ;"
+1="
+b11110 %
+b11110 I
+b11110 1"
 1?
 #36000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #37000
-b1100 :"
+b1100 ;"
 1?
 #38000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #39000
-b1101 :"
-b11 %
-b11 I
-b11 0"
+b1101 ;"
+b11111 %
+b11111 I
+b11111 1"
 1?
 #40000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #41000
-b1001 :"
-b1 2"
-b11 $
-b11 J
-b11 1"
+b1001 ;"
+b1 3"
+b11111 $
+b11111 J
+b11111 2"
 1?
 #42000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #43000
-b1110 :"
+b1010 ;"
+b1 <"
 1?
 #44000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #45000
-b10 ="
-b100 ."
-b10 ,"
-b1111 :"
-b0 '
-b0 H
-b0 -"
+b1011 ;"
+b11101 $
+b11101 J
+b11101 2"
 1?
 #46000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #47000
-b10001 :"
+b10000 ;"
+b11101 %
+b11101 I
+b11101 1"
 1?
 #48000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #49000
-b10 ="
-b110 ."
-b11 ,"
-b10100 :"
-b10 '
-b10 H
-b10 -"
-0&
-0/"
-b1 (
-b1 G
-b1 +"
-b0 2"
+b1100 ;"
 1?
 #50000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #51000
-b10101 :"
+b1101 ;"
+b11111 %
+b11111 I
+b11111 1"
 1?
 #52000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #53000
-b11010 :"
-b10 %
-b10 I
-b10 0"
+b1001 ;"
+b10 3"
+b11111 $
+b11111 J
+b11111 2"
 1?
 #54000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #55000
-b100110 :"
-b0z #
-b0z L
-b0z 6"
+b11 3"
 1?
 #56000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #57000
-b100111 :"
-b11 %
-b11 I
-b11 0"
+b100 3"
 1?
 #58000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #59000
-b10100 :"
-b1 9"
+b1110 ;"
 1?
 #60000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #61000
-b11000 :"
-1?
-#62000
-b10 F
-b10 E
-0?
-#63000
-b11011 :"
-1?
-#64000
-b10 F
-b10 E
-0?
-#65000
-b11100 :"
-1&
-1/"
-b0 %
-b0 I
-b0 0"
-1?
-#66000
-b10 F
-b10 E
-0?
-#67000
-b10 ="
-b11101 :"
-b110 '
-b110 H
-b110 -"
-b11 (
-b11 G
-b11 +"
-1?
-#68000
-b10 F
-b10 E
-0?
-#69000
-b11110 :"
-b11 %
-b11 I
-b11 0"
-1?
-#70000
-b10 F
-b10 E
-0?
-#71000
-b10 ="
-b111 ."
-b11111 :"
-b111 '
-b111 H
-b111 -"
-1?
-#72000
-b10 F
-b10 E
-0?
-#73000
-b100000 :"
-b1 $
-b1 J
-b1 1"
-1?
-#74000
-b10 F
-b10 E
-0?
-#75000
-b100001 :"
-b1 %
-b1 I
-b1 0"
-1?
-#76000
-b10 F
-b10 E
-0?
-#77000
-b100010 :"
-1?
-#78000
-b10 F
-b10 E
-0?
-#79000
-b100011 :"
-b11 %
-b11 I
-b11 0"
-1?
-#80000
-b10 F
-b10 E
-0?
-#81000
-b100100 :"
-b11 $
-b11 J
-b11 1"
-1?
-#82000
-b10 F
-b10 E
-0?
-#83000
-b10 ="
-b100 ."
-b10 ,"
-b100101 :"
-b10 (
-b10 G
-b10 +"
-b100 '
-b100 H
-b100 -"
-1?
-#84000
-b10 F
-b10 E
-0?
-#85000
-b10 ="
-b100 ."
-b10 ,"
-b0 :"
-b0 (
-b0 G
-b0 +"
+b101 >"
+b101010100 /"
+b11110 -"
+b1111 ;"
 b0 '
 b0 H
-b0 -"
+b0 ."
+1?
+#62000
+b101 F
+b101 E
+0?
+#63000
+b10001 ;"
+1?
+#64000
+b101 F
+b101 E
+0?
+#65000
+b101 >"
+b101010110 /"
+b11111 -"
+b10100 ;"
+b10 '
+b10 H
+b10 ."
+0&
+00"
+b1 (
+b1 G
+b1 ,"
+b0 3"
+1?
+#66000
+b101 F
+b101 E
+0?
+#67000
+b10101 ;"
+1?
+#68000
+b101 F
+b101 E
+0?
+#69000
+b11010 ;"
+b11110 %
+b11110 I
+b11110 1"
+1?
+#70000
+b101 F
+b101 E
+0?
+#71000
+b100110 ;"
+b0z #
+b0z M
+b0z 7"
+1?
+#72000
+b101 F
+b101 E
+0?
+#73000
+b100111 ;"
+b11111 %
+b11111 I
+b11111 1"
+1?
+#74000
+b101 F
+b101 E
+0?
+#75000
+b10100 ;"
+b1 :"
+1?
+#76000
+b101 F
+b101 E
+0?
+#77000
+b10101 ;"
+1?
+#78000
+b101 F
+b101 E
+0?
+#79000
+b11010 ;"
+b11101 %
+b11101 I
+b11101 1"
+1?
+#80000
+b101 F
+b101 E
+0?
+#81000
+b100110 ;"
+b0zz #
+b0zz M
+b0zz 7"
+1?
+#82000
+b101 F
+b101 E
+0?
+#83000
+b100111 ;"
+b11111 %
+b11111 I
+b11111 1"
+1?
+#84000
+b101 F
+b101 E
+0?
+#85000
+b10100 ;"
+b10 :"
 1?
 #86000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #87000
-b0 ."
-b0 ,"
-b0 #
-b0 L
-b0 6"
-b0 3"
-b0 5"
-b0 4"
-0<"
-0&
-0/"
-b0 9"
-b10 7"
+b10101 ;"
 1?
 #88000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #89000
+b11010 ;"
+b11011 %
+b11011 I
+b11011 1"
 1?
 #90000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #91000
+b100110 ;"
+b0zzz #
+b0zzz M
+b0zzz 7"
 1?
 #92000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #93000
+b100111 ;"
+b11111 %
+b11111 I
+b11111 1"
 1?
 #94000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #95000
+b10100 ;"
+b11 :"
 1?
 #96000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #97000
+b10101 ;"
 1?
 #98000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #99000
+b11010 ;"
+b10111 %
+b10111 I
+b10111 1"
 1?
 #100000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #101000
+b100110 ;"
+b0zzzz #
+b0zzzz M
+b0zzzz 7"
 1?
 #102000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #103000
+b100111 ;"
+b11111 %
+b11111 I
+b11111 1"
 1?
 #104000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #105000
+b10100 ;"
+b100 :"
 1?
 #106000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #107000
+b11000 ;"
 1?
 #108000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #109000
+b11011 ;"
 1?
 #110000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #111000
+b11100 ;"
+1&
+10"
+b0 %
+b0 I
+b0 1"
 1?
 #112000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #113000
+b101 >"
+b11101 ;"
+b101010110 '
+b101010110 H
+b101010110 ."
+b11111 (
+b11111 G
+b11111 ,"
 1?
 #114000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #115000
+b11110 ;"
+b11111 %
+b11111 I
+b11111 1"
 1?
 #116000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #117000
+b101 >"
+b101010111 /"
+b11111 ;"
+b101010111 '
+b101010111 H
+b101010111 ."
 1?
 #118000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #119000
+b100000 ;"
+b1111 $
+b1111 J
+b1111 2"
 1?
 #120000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #121000
+b100001 ;"
+b1111 %
+b1111 I
+b1111 1"
 1?
 #122000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #123000
+b100010 ;"
 1?
 #124000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #125000
+b100011 ;"
+b11111 %
+b11111 I
+b11111 1"
 1?
 #126000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #127000
+b100100 ;"
+b11111 $
+b11111 J
+b11111 2"
 1?
 #128000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #129000
+b101 >"
+b101010100 /"
+b11110 -"
+b100101 ;"
+b11110 (
+b11110 G
+b11110 ,"
+b101010100 '
+b101010100 H
+b101010100 ."
 1?
 #130000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #131000
+b101 >"
+b101010100 /"
+b11110 -"
+b0 ;"
+b0 (
+b0 G
+b0 ,"
+b0 '
+b0 H
+b0 ."
 1?
 #132000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #133000
+b0 /"
+b0 -"
+b0 #
+b0 M
+b0 7"
+b0 4"
+b0 6"
+b0 5"
+0="
+0&
+00"
+b0 :"
+b0 <"
+b10 8"
 1?
 #134000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #135000
 1?
 #136000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #137000
 1?
 #138000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #139000
 1?
 #140000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #141000
 1?
 #142000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #143000
 1?
 #144000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #145000
 1?
 #146000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #147000
 1?
 #148000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #149000
 1?
 #150000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #151000
 1?
 #152000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #153000
 1?
 #154000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #155000
 1?
 #156000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #157000
 1?
 #158000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #159000
 1?
 #160000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #161000
 1?
 #162000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #163000
 1?
 #164000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #165000
 1?
 #166000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #167000
 1?
 #168000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #169000
 1?
 #170000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #171000
 1?
 #172000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #173000
 1?
 #174000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #175000
 1?
 #176000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #177000
 1?
 #178000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #179000
 1?
 #180000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #181000
 1?
 #182000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #183000
 1?
 #184000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #185000
 1?
 #186000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #187000
 1?
 #188000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #189000
 1?
 #190000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #191000
 1?
 #192000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #193000
 1?
 #194000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #195000
 1?
 #196000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #197000
 1?
 #198000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #199000
 1?
 #200000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #201000
 1?
 #202000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #203000
 1?
 #204000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #205000
 1?
 #206000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #207000
 1?
 #208000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #209000
 1?
 #210000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #211000
 1?
 #212000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #213000
 1?
 #214000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #215000
 1?
 #216000
-b10 F
-b10 E
+b101 F
+b101 E
 0?
 #217000
 1?
